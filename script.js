@@ -21,13 +21,19 @@ const addButton = document.querySelector('#addButton');
 const formTitle = document.querySelector('#formTitle');
 const formAuthor = document.querySelector('#formAuthor');
 const formPages = document.querySelector('#formPages');
-const formReadUnread = document.querySelector('#formReadUnread');
+let formReadUnread = 'unread';
 const form = document.querySelector('form');
 const container = document.querySelector('.container');
+const radios = document.querySelectorAll('input[name="readUnread"]');
 
+radios.forEach((radio) => {
+  radio.addEventListener('click', (e) => {
+  formReadUnread = radio.value;
+  });
+});
 
 form.onsubmit = function() {
-  const newBook = new Book(formTitle.value, formAuthor.value, formPages.value, formReadUnread.value);
+  const newBook = new Book(formTitle.value, formAuthor.value, formPages.value, formReadUnread);
   newBook.addToLibrary();
   event.preventDefault();
   makeCard();
@@ -56,10 +62,8 @@ function clearForm() {
   formTitle.value = '';
   formAuthor.value = '';
   formPages.value = '';
-  formReadUnread.value = '';
-}
+};
 
-
-const harryPotter = new Book('Harry Potter', 'that napkin lady', '420', 'read already')
-const hardyBoys = new Book('The Hardy Boys', 'some pedo', 'like 100', 'ready already')
-const thePush = new Book('The Push', 'Tommy Caldwell', '420', 'unread')
+// const harryPotter = new Book('Harry Potter', 'that napkin lady', '420', 'read already')
+// const hardyBoys = new Book('The Hardy Boys', 'some pedo', 'like 100', 'ready already')
+// const thePush = new Book('The Push', 'Tommy Caldwell', '420', 'unread')

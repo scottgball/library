@@ -24,8 +24,10 @@
         <input type="number" id="formPages" name="pages" required>
       </li>
       <li>
-        <label for="readUnread">Read or Unread:</label>
-        <input type="text" id="formReadUnread" name="readUnread" required>
+        <label for="formRead">Read</label>
+        <input type="radio" class="formReadUnRead" id="formRead" name="readUnread" value="read">
+        <label for="formUnread">Unread</label>
+        <input type="radio" class="formReadUnread" id="formUnread" name="readUnread" value="unread" checked>
       </li>
       <li class="button">
         <button type="submit">Add book to library</button>
