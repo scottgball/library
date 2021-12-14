@@ -9,22 +9,28 @@ function Book(title, author, pages, read) {
 
 Book.prototype.addToLibrary = function () {
   library.push(this);
-}
+};
 
-function displayBooks () {
-  library.forEach(Book => {
-    console.table(Book)
-  });
+Book.prototype.changeReadStatus = function () {
+  if (this.read === 'Unread') {
+    this.read = 'Read';
+  } else if (this.read === 'Read') {
+    this.read = 'Unread'
+  };
 };
 
 const addButton = document.querySelector('#addButton');
 const formTitle = document.querySelector('#formTitle');
 const formAuthor = document.querySelector('#formAuthor');
 const formPages = document.querySelector('#formPages');
-let formReadUnread = 'unread';
+let formReadUnread = 'Unread';
 const form = document.querySelector('form');
 const container = document.querySelector('.container');
 const radios = document.querySelectorAll('input[name="readUnread"]');
+const readButtons = document.querySelectorAll('.readButton');
+const entryForm = document.querySelector('#entryForm');
+
+addButton.addEventListener('click', openForm);
 
 radios.forEach((radio) => {
   radio.addEventListener('click', (e) => {
@@ -38,21 +44,31 @@ form.onsubmit = function() {
   event.preventDefault();
   makeCard();
   clearForm();
+  closeForm();
 };
 
 function makeCard() {
   const card = document.createElement('div');
   const cardInfo = document.createElement('p');
-  const deleteButton = document.createElement('button')
+  const deleteButton = document.createElement('button');
+  const readButton = document.createElement('button');
+  const cardIndex = library[library.length - 1];
   card.classList.add('card');
   container.appendChild(card);
   card.appendChild(cardInfo);
-  cardInfo.textContent = `"${library[library.length - 1].title}", written by ${library[library.length - 1].author}. ${library[library.length - 1].pages} pages long, ${library[library.length - 1].read}`;
+  cardInfo.textContent = `"${cardIndex.title}", written by ${cardIndex.author}. ${cardIndex.pages} pages long. ${cardIndex.read}.`;
   card.appendChild(deleteButton);
   deleteButton.textContent = `Delete this book`;
   deleteButton.addEventListener('click', (e) => {
     container.removeChild(card);
     library.splice(this.index, 1);
+  });
+  card.appendChild(readButton);
+  readButton.classList.add('readButton');
+  readButton.textContent = `Change 'Read' status`;
+  readButton.addEventListener('click', (e) => {
+    cardIndex.changeReadStatus();
+    cardInfo.textContent = `"${cardIndex.title}", written by ${cardIndex.author}. ${cardIndex.pages} pages long. ${cardIndex.read}.`;
   });
 }
 
@@ -62,6 +78,14 @@ function clearForm() {
   formTitle.value = '';
   formAuthor.value = '';
   formPages.value = '';
+};
+
+function openForm() {
+  entryForm.style.display = "block";
+};
+
+function closeForm() {
+  entryForm.style.display = "none";
 };
 
 // const harryPotter = new Book('Harry Potter', 'that napkin lady', '420', 'read already')
