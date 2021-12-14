@@ -1,3 +1,33 @@
+body {
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pageButton {
+  width: 150px;
+}
+
+.cardButton {
+  background-color: rgb(69, 134, 255);
+  color:white;
+  font-weight: 800;
+  margin: 0px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.cardButton:hover {
+  background-color: rgb(67, 121, 223);
+}
+
 #entryForm {
   display: none;
 }
@@ -7,10 +37,27 @@ ul {
 }
 
 .card {
-  height: 100px;
-  width: 100px;
-  border: 5px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  margin: 10px;
+  padding: 10px;
+  border: 5px solid rgb(209, 129, 58);
+  height: auto;
+}
 
+.card p {
+  margin: 5px;
+  padding: 0px;
+}
+
+.bolded {
+  font-weight: 800;
 }
 
 .readButton {
