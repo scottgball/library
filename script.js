@@ -1,3 +1,4 @@
+//DOM TARGETS AND DEFAULT VALUES
 const library = [];
 const addButton = document.querySelector('#addButton');
 const formTitle = document.querySelector('#formTitle');
@@ -11,6 +12,7 @@ const readButtons = document.querySelectorAll('.readButton');
 const entryForm = document.querySelector('#entryForm');
 
 
+//BOOK OBJECT CONSTRUCTOR AND METHODS
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -30,6 +32,7 @@ Book.prototype.changeReadStatus = function () {
   };
 };
 
+//EVENT LISTENERS
 addButton.addEventListener('click', openForm);
 
 radios.forEach((radio) => {
@@ -47,6 +50,7 @@ form.onsubmit = function() {
   closeForm();
 };
 
+//HELPER FUNCTIONS
 function makeCard() {
   const card = document.createElement('div');
   const cardInfo = document.createElement('p');
@@ -88,6 +92,8 @@ function closeForm() {
   entryForm.style.display = "none";
 };
 
+
+//PRE-LOADED BOOKS
 const paramotorBible = new Book('Powered Paragliding Bible', 'Jeff Goin', '320', 'Read')
 paramotorBible.addToLibrary();
 makeCard();
