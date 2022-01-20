@@ -12,23 +12,23 @@ const readButtons = document.querySelectorAll('.readButton');
 const entryForm = document.querySelector('#entryForm');
 
 
-//BOOK OBJECT CONSTRUCTOR AND METHODS
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+//BOOK CLASS AND METHODS
+class Book {
+  constructor (title, author, pages, read) { 
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
   };
-
-Book.prototype.addToLibrary = function () {
-  library.push(this);
-};
-
-Book.prototype.changeReadStatus = function () {
-  if (this.read === 'Unread') {
-    this.read = 'Read';
-  } else if (this.read === 'Read') {
-    this.read = 'Unread'
+  addToLibrary = function () {
+    library.push(this);
+  };
+  changeReadStatus = function () {
+    if (this.read === 'Unread') {
+      this.read = 'Read';
+    } else if (this.read === 'Read') {
+      this.read = 'Unread'
+    };
   };
 };
 
